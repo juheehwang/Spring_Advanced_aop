@@ -95,5 +95,28 @@ public class ExecutionTest {
         Assertions.assertThat(pointcut.matches(internalMethod,MemberServiceImpl.class)).isFalse();
     }
 
+    //String 타입의 파라미터 허용
+    @Test
+    void argsMatch(){
+        pointcut.setExpression("execution(* *(String))");
+        Assertions.assertThat(pointcut.matches(helloMethod,MemberServiceImpl.class)).isTrue();
+    }
+    @Test
+    void noArgsMatch(){
+        pointcut.setExpression("execution(* *())");
+        Assertions.assertThat(pointcut.matches(helloMethod,MemberServiceImpl.class)).isFalse();
+    }
+
+    @Test
+    void argsMatchStar(){
+        pointcut.setExpression("execution(* *(*))");
+        Assertions.assertThat(pointcut.matches(helloMethod,MemberServiceImpl.class)).isTrue();
+    }
+    @Test
+    void argsMatchComplex(){
+        pointcut.setExpression("execution(* *(String, ..))");
+        Assertions.assertThat(pointcut.matches(helloMethod,MemberServiceImpl.class)).isTrue();
+    }
+
 
 }
