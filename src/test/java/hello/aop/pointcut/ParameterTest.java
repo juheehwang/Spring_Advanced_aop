@@ -60,7 +60,7 @@ public class ParameterTest {
         }
         @Before("allMember() && @within(annotation)")
         public void atWithin(JoinPoint joinPoint, ClassAop annotation){
-            log.info("[within]{}, obj={}", joinPoint.getSignature(),annotation);˚
+            log.info("[within]{}, obj={}", joinPoint.getSignature(),annotation);
         }
     }
 }
